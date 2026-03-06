@@ -1,0 +1,15 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+nav ul{
+    display: flex;
+    gap: 20px;
+}
+nav li .login_btn{
+    @include login_btn
+}
+nav li .start_btn{
+    @include start_btn
+}

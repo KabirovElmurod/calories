@@ -1,0 +1,35 @@
+@mixin login_btn(){
+    font-size: $font_size_mid;
+    cursor: pointer;
+    font-family: 'Poppins';
+    padding: 5px 20px;
+    border-radius: $main_border_radius;
+    transition: all $fast_time linear;
+    &:hover{
+        background-color: rgba(205, 205, 205, 0.225);
+    }
+}
+
+@mixin start_btn{
+    font-size: $font_size_mid;
+    border-radius: $main_border_radius;
+    padding: 5px 20px;
+    background-color: $main_color;
+    color: $white_color;
+    transition: all $fast_time linear;
+    &:hover{
+        background-color: $main_hover_color;
+    }
+}
+
+@mixin ball($width:400px, $height:400px, $color:aqua,$top:0, $left:0, $blur:100px){
+    width: $width;
+    height: $height;
+    background-color: $color;
+    position: absolute;
+    top: $top;
+    left: $top;
+    transition: all 5s linear;
+    border-radius: 50%;
+    filter: blur($blur);
+}
