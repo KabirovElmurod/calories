@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Ovqatlanishni Kuzatuvchi</title>
+  <style>
+    body {
+      margin:0; font-family:Arial, sans-serif;
+      background:#f5f5f5; color:#333;
+    }
+    .container {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap:20px;
+      padding:20px;
+    }
+    .card {
+      background:#fff; border-radius:10px;
+      box-shadow:0 4px 8px rgba(0,0,0,0.1);
+      padding:20px; text-align:center;
+      border-top:8px solid #8B4513; /* jigar rang */
+    }
+    .card img {
+      width:100%; height:150px; object-fit:cover;
+      border-radius:8px;
+    }
+    input, select {
+      padding:10px; margin:8px 0;
+      border-radius:6px; border:1px solid #ccc;
+      width:80%;
+    }
+    button {
+      background:#8B4513; color:#fff; border:none;
+      padding:10px 20px; margin:5px;
+      border-radius:6px; cursor:pointer;
+    }
+    button:hover { background:#5C3317; }
+    h1,h2 { margin-top:0; }
+  </style>
+</head>
+<body>
+
+<!-- Birinchi oyna -->
+<section>
+  <h1 style="text-align:center; color:#8B4513;">1-oyna</h1>
+  <div class="container">
+    <!-- Ro‘yxatdan o‘tish -->
+    <div class="card">
+      <h2>Ro‘yxatdan o‘tish</h2>
+      <form>
+        <input type="text" placeholder="Ismingiz"><br>
+        <input type="email" placeholder="Email manzilingiz"><br>
+        <input type="password" placeholder="Parol"><br>
+        <button type="submit">Ro‘yxatdan o‘tish</button>
+      </form>
+    </div>
+
+    <!-- Xush kelibsiz -->
+    <div class="card">
+      <h2>Xush kelibsiz</h2>
+      <p>Sog‘lom ovqatlanishni kuzatib boring</p>
+      <button>Boshlash</button>
+      <button>O‘tkazib yuborish</button>
+    </div>
+
+    <!-- Profil -->
+    <div class="card">
+      <h2>Profil</h2>
+      <ul style="list-style:none; padding:0;">
+        <li>Kunlik iste’mol</li>
+        <li>Oziqlanish hisobot</li>
+        <li>Rivojlanish hisobot</li>
+        <li>Chiqish</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Ikkinchi oyna -->
+<section>
+  <h1 style="text-align:center; color:#8B4513;">2-oyna</h1>
+  <div class="container">
+    <!-- Yoshingiz -->
+    <div class="card">
+      <h2>Yoshingiz</h2>
+      <input type="number" value="19">
+      <button>Davom etish</button>
+    </div>
+
+    <!-- Vazningiz -->
+    <div class="card">
+      <h2>Vazningiz</h2>
+      <input type="number" value="62">
+      <select><option>Kg</option><option>lbs</option></select>
+      <button>Davom etish</button>
+    </div>
+
+    <!-- Maqsadingiz -->
+    <div class="card">
+      <h2>Maqsadingiz</h2>
+      <button>Ozish</button>
+      <button>Saqlab qolish</button>
+      <button>Vazn orttirish</button>
+    </div>
+
+    <!-- Jinsingiz -->
+    <div class="card">
+      <h2>Jinsingiz</h2>
+      <button>Ayol</button>
+      <button>Erkak</button>
+      <button>Boshqa</button>
+    </div>
+
+    <!-- Taomlar -->
+    <div class="card">
+      <img src="https://tse3.mm.bing.net/th/id/OIP.o7xRGVdBQDRumNUmEjxcwwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Avokado taomi">
+      <h3>Avokado taomi (100g)</h3>
+      <p>Oqsil: 2g | Uglevod: 9g | Yog‘: 15g</p>
+    </div>
+
+    <!-- Rivojlanish -->
+    <div class="card">
+      <h2>Rivojlanish</h2>
+      <p>Kaloriya: 1721 Kkal</p>
+      <p>Oqsil: 80g | Uglevod: 200g | Yog‘: 60g</p>
+    </div>
+
+    <!-- Kunlik ovqatlanish -->
+    <div class="card">
+      <h2>Kunlik ovqatlanish</h2>
+      <ul style="list-style:none; padding:0;">
+        <li>Tuxumli salat</li>
+        <li>Avokado taomi</li>
+        <li>Pankeyk</li>
+        <li>Ananas bo‘lagi</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
