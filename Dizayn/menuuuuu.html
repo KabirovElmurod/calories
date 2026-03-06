@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitLife AI</title>
+  <style>
+    body {
+      margin:0; font-family:Arial, sans-serif;
+      scroll-behavior:smooth;
+    }
+    header {
+      background:#2e7d32; color:#fff; padding:15px 40px;
+      display:flex; justify-content:space-between; align-items:center;
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+    }
+    nav a {
+      color:#fff; margin:0 12px; text-decoration:none; font-weight:bold;
+      cursor:pointer;
+    }
+    section {
+      padding:100px 20px; min-height:100vh;
+    }
+    .hero { background:#4caf50; color:#fff; text-align:center; }
+    .mealplans { background:#f1f8e9; }
+    .workouts { background:#fff3e0; }
+    .progress { background:#e3f2fd; }
+    .blog { background:#fce4ec; }
+    .login { background:#ede7f6; }
+    .signup { background:#fffde7; }
+
+    /* Mahsulot kartochkasi */
+    .card {
+      width: 250px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin: 20px;
+      display: inline-block;
+      text-align: center;
+      overflow: hidden;
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+    }
+    .caption {
+      padding: 10px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+
+    /* Modal oynacha */
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 1;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      background: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 8px;
+      width: 300px;
+      text-align: center;
+    }
+    .close {
+      float: right;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <h1>FitLife AI</h1>
+    <nav>
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#how" class="nav-link">How It Works</a>
+      <a href="#mealplans" class="nav-link">Meal Plans</a>
+      <a href="#workouts" class="nav-link">Workouts</a>
+      <a href="#progress" class="nav-link">Progress</a>
+      <a href="#blog" class="nav-link">Blog</a>
+      <a href="#login" class="nav-link">Login</a>
+      <a href="#signup" class="nav-link">Sign Up</a>
+    </nav>
+  </header>
+
+  <!-- Sections -->
+  <section id="home" class="hero">
+    <h2>Healthy Body. Smart Nutrition. Uzbek Taste.</h2>
+    <p>AI-powered fitness and nutrition planning tailored to your body and lifestyle.</p>
+    <button>Start Free Plan</button>
+    <button>See How It Works</button>
+    <p>No credit card required. Takes less than 1 minute.</p>
+  </section>
+
+  <section id="how">
+    <h2>How It Works</h2>
+    <p>1️⃣ Enter your body data<br>2️⃣ Choose your goal<br>3️⃣ Get your AI-powered plan</p>
+    <button>Get My Plan Now</button>
+  </section>
+
+  <section id="mealplans" class="mealplans">
+    <h2>Your Personalized Meal Plans</h2>
+    <p>Filter and choose meals adjusted to your fitness goals.</p>
+
+    <!-- Mahsulot kartochkalari -->
+    <div class="card">
+      <img src="images/broccoli.jpg" alt="Natural Broccoli">
+      <div class="caption">
+        <h3>Natural Broccoli</h3>
+        <p>$2.99</p>
+        <button onclick="openInfo('Bu mahsulot organik fermadan olingan.')">
+          Ko‘proq ma’lumot
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/orange.jpg" alt="Fresh Orange Juice">
+      <div class="caption">
+        <h3>Fresh Orange Juice</h3>
+        <p>$3.99</p>
+        <button onclick="openInfo('Vitamin C ga boy, yangi siqilgan sharbat.')">
+          Ko‘proq ma’lumot
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="workouts" class="workouts">
+    <h2>Your Workout Library</h2>
+    <p>Browse exercises by level and equipment.</p>
+  </section>
+
+  <section id="progress" class="progress">
+    <h2>Track Your Transformation</h2>
+    <p>Weight graph, BMI tracker, calories intake history.</p>
+  </section>
+
+  <section id="blog" class="blog">
+    <h2>Blog</h2>
+    <p>Read articles and tips about fitness and nutrition.</p>
+  </section>
+
+  <section id="login" class="login">
+    <h2>Login</h2>
+    <form>
+      <input type="email" placeholder="Email"><br>
+      <input type="password" placeholder="Password"><br>
+      <button>Login</button>
+    </form>
+  </section>
+
+  <section id="signup" class="signup">
+    <h2>Sign Up</h2>
+    <form>
+      <input type="text" placeholder="Full Name"><br>
+      <input type="email" placeholder="Email"><br>
+      <input type="password" placeholder="Password"><br>
+      <input type="password" placeholder="Confirm Password"><br>
+      <button>Create Account</button>
+    </form>
+  </section>
+
+  <!-- Modal oynacha -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <p id="modal-text"></p>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Navbar smooth scroll
+    document.querySelectorAll(".nav-link").forEach(link => {
+      link.addEventListener("click", function(e){
+        e.preventDefault();
+        const targetId = this.getAttribute("href").substring(1);
+        document.getElementById(targetId).scrollIntoView({behavior:"smooth"});
+      });
+    });
+
+    // Modal funksiyasi
+    function openInfo(text) {
+      document.getElementById("modal-text").innerText = text;
+      document.getElementById("modal").style.display = "block";
+    }
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+  </script>
+</body>
+</html>
