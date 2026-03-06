@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O'zbek Taomi & Fitness AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-b dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                        O'zbek Taomi & Fitness AI
+                    </span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <svg id="theme-icon-moon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg id="theme-icon-sun" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                    <button onclick="window.location.href='login.html'" class="px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                        Kirish
+                    </button>
+                    <button onclick="window.location.href='signup.html'" class="px-6 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg">
+                        Boshlash
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-emerald-950 dark:via-teal-950 dark:to-cyan-950"></div>
+        
+        <!-- Animated blobs -->
+        <div class="absolute top-20 left-10 w-72 h-72 bg-emerald-200 dark:bg-emerald-800 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-20 animate-blob"></div>
+        <div class="absolute top-40 right-10 w-72 h-72 bg-cyan-200 dark:bg-cyan-800 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-8 left-1/2 w-72 h-72 bg-teal-200 dark:bg-teal-800 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 py-20 lg:py-32">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 px-4 py-2 rounded-full text-sm font-medium">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        AI-Powered Fitness Yordamchisi
+                    </div>
+                    
+                    <h1 class="text-5xl lg:text-7xl font-bold leading-tight">
+                        <span class="bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">
+                            O'zbek Taomi
+                        </span>
+                        <br>
+                        <span class="text-gray-900 dark:text-white">Zamonaviy Fitness Bilan</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+                        Milliy ta'mlar bilan sog'lom turmush tarziga o'tish uchun shaxsiy AI yordamchingiz. 
+                        Kaloriya kuzatish, vazn prognozi va sevimli milliy taomlar.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="window.location.href='signup.html'" class="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white text-lg rounded-lg font-medium">
+                            ❤️ Boshlash
+                        </button>
+                        <button onclick="window.location.href='login.html'" class="px-8 py-4 border-2 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 text-lg rounded-lg font-medium">
+                            Kirish
+                        </button>
+                    </div>
+
+                    <div class="flex gap-8 pt-4">
+                        <div>
+                            <div class="text-3xl font-bold text-emerald-600">20+</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Milliy Taomlar</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-emerald-600">AI</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Texnologiyasi</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-emerald-600">24/7</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Kuzatuv</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative hidden lg:block">
+                    <div class="absolute inset-0 bg-gradient-to-br from-emerald-400 to-cyan-400 rounded-3xl transform rotate-3"></div>
+                    <img src="https://images.unsplash.com/photo-1649777476920-0eef34169cdb?w=1080&q=80" alt="Uzbek Plov" class="relative rounded-3xl shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <div class="max-w-7xl mx-auto px-4 py-24">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-white">Nima Uchun Bizni Tanlash Kerak?</h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                O'zbek milliy taomlarini eng so'nggi AI texnologiyasi bilan birlashtiramiz
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border-2 border-gray-200 dark:border-gray-700 hover:border-emerald-500 transition-all hover:shadow-xl group">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-100 to-cyan-100 dark:from-emerald-900 dark:to-cyan-900 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <svg class="w-7 h-7 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Milliy Taomlar Bazasi</h3>
+                <p class="text-gray-600 dark:text-gray-300">Osh, Shurpa, Manti, Somsa va boshqa 20+ milliy taomlar to'liq kaloriya ma'lumotlari bilan</p>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border-2 border-gray-200 dark:border-gray-700 hover:border-emerald-500 transition-all hover:shadow-xl group">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-100 to-cyan-100 dark:from-emerald-900 dark:to-cyan-900 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <svg class="w-7 h-7 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">AI Kaloriya Tahlili</h3>
+                <p class="text-gray-600 dark:text-gray-300">Yosh, vazn, bo'y va faollik darajangizga asoslangan aqlli tavsiyalar</p>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border-2 border-gray-200 dark:border-gray-700 hover:border-emerald-500 transition-all hover:shadow-xl group">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-100 to-cyan-100 dark:from-emerald-900 dark:to-cyan-900 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <svg class="w-7 h-7 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Vazn O'zgarishi Prognozi</h3>
+                <p class="text-gray-600 dark:text-gray-300">Realisti grafik va jadvallar orqali rivojlanishingizni kuzatib boring</p>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border-2 border-gray-200 dark:border-gray-700 hover:border-emerald-500 transition-all hover:shadow-xl group">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-100 to-cyan-100 dark:from-emerald-900 dark:to-cyan-900 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <svg class="w-7 h-7 text-pink-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Adaptiv AI Tizimi</h3>
+                <p class="text-gray-600 dark:text-gray-300">Tizim sizning tanlovlaringizdan o'rganib, yaxshiroq tavsiyalar beradi</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="bg-gray-100 dark:bg-gray-800 py-24">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-white">Qanday Ishlaydi?</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">Uchta oddiy qadamda boshlang</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="relative">
+                    <div class="relative bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500 text-white flex items-center justify-center text-2xl font-bold mb-6 mx-auto">1</div>
+                        <svg class="w-12 h-12 text-emerald-600 mb-4 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        <h3 class="text-2xl font-semibold mb-3 text-center text-gray-900 dark:text-white">Profil Yarating</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-center">Yoshingiz, vazn, bo'y, jins va fitness maqsadlaringizni kiriting</p>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="relative bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500 text-white flex items-center justify-center text-2xl font-bold mb-6 mx-auto">2</div>
+                        <svg class="w-12 h-12 text-emerald-600 mb-4 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                        <h3 class="text-2xl font-semibold mb-3 text-center text-gray-900 dark:text-white">AI Tavsiyalar Oling</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-center">Milliy taomlar bilan shaxsiy ovqatlanish rejasini oling</p>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="relative bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500 text-white flex items-center justify-center text-2xl font-bold mb-6 mx-auto">3</div>
+                        <svg class="w-12 h-12 text-emerald-600 mb-4 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        <h3 class="text-2xl font-semibold mb-3 text-center text-gray-900 dark:text-white">Rivojlanishni Kuzating</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-center">Vazn o'zgarishini, taomlarni yozib boring va rejani moslashtiring</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dishes Preview -->
+    <div class="max-w-7xl mx-auto px-4 py-24">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-white">O'zbek Milliy Taomlari</h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                Fitness maqsadlaringizga erishayotganda sevimli taomlaringizdan bahramand bo'ling
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden group hover:shadow-2xl transition-all">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1649777476920-0eef34169cdb?w=800&q=80" alt="Osh" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 right-4 text-white">
+                        <h3 class="text-2xl font-bold mb-1">Osh (Plov)</h3>
+                        <p class="text-sm opacity-90">Milliy guruch taom • 450 kcal</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden group hover:shadow-2xl transition-all">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1743414256055-05993b349771?w=800&q=80" alt="Manti" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 right-4 text-white">
+                        <h3 class="text-2xl font-bold mb-1">Manti</h3>
+                        <p class="text-sm opacity-90">Bug'da pishirilgan chuchvara • 380 kcal</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden group hover:shadow-2xl transition-all">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1612966948332-81d747414a8f?w=800&q=80" alt="Shurpa" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 right-4 text-white">
+                        <h3 class="text-2xl font-bold mb-1">Shurpa</h3>
+                        <p class="text-sm opacity-90">Go'shtli sho'rva • 280 kcal</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600"></div>
+        <div class="relative max-w-4xl mx-auto px-4 py-24 text-center text-white">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">
+                Fitness Sayohatingizni Boshlashga Tayyormisiz?
+            </h2>
+            <p class="text-xl mb-10 opacity-90 max-w-2xl mx-auto">
+                Minglab foydalanuvchilar milliy taomlar va AI yordami bilan salomatlik maqsadlariga erishmoqda
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="window.location.href='signup.html'" class="px-8 py-4 bg-white text-emerald-600 hover:bg-gray-100 text-lg rounded-lg font-medium">
+                    Hozir Boshlang
+                </button>
+                <button onclick="window.location.href='login.html'" class="px-8 py-4 border-2 border-white text-white hover:bg-white/20 text-lg rounded-lg font-medium">
+                    Kirish
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 dark:bg-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-600 dark:text-gray-400">
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                <span class="font-semibold text-lg text-gray-900 dark:text-white">O'zbek Taomi & Fitness AI</span>
+            </div>
+            <p class="text-sm">
+                © 2026 O'zbek Taomi & Fitness AI. Barcha huquqlar himoyalangan.
+            </p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

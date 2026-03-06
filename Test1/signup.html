@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ro'yxatdan O'tish - O'zbek Taomi & Fitness AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-emerald-950 dark:via-teal-950 dark:to-cyan-950 min-h-screen flex items-center justify-center p-4">
+    <div class="absolute top-4 right-4">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-white/50 dark:hover:bg-gray-800/50">
+            <svg id="theme-icon-moon-signup" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            </svg>
+            <svg id="theme-icon-sun-signup" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <div class="w-full max-w-3xl bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-8 my-8">
+        <div class="flex items-center justify-center mb-6">
+            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+            </div>
+        </div>
+
+        <button onclick="window.location.href='index.html'" class="mb-6 flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            Orqaga
+        </button>
+
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Hisob Yaratish</h1>
+            <p class="text-gray-600 dark:text-gray-400">O'zbek Taomi & Fitness AI ga qo'shiling va shaxsiy fitness sayohatingizni boshlang</p>
+        </div>
+
+        <form id="signupForm" class="space-y-6">
+            <!-- Personal Info -->
+            <div class="space-y-4">
+                <h3 class="font-semibold text-lg border-b pb-2 text-gray-900 dark:text-white">Shaxsiy Ma'lumotlar</h3>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">To'liq Ism</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            required 
+                            placeholder="Ismingizni kiriting"
+                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                        >
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Email</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            required 
+                            placeholder="email@example.com"
+                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                        >
+                    </div>
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Parol</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        required 
+                        placeholder="Parol kiriting"
+                        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    >
+                </div>
+            </div>
+
+            <!-- Physical Profile -->
+            <div class="space-y-4">
+                <h3 class="font-semibold text-lg border-b pb-2 text-gray-900 dark:text-white">Jismoniy Profil</h3>
+                
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="age" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Yosh</label>
+                        <input 
+                            type="number" 
+                            id="age" 
+                            required 
+                            min="15" 
+                            max="100" 
+                            placeholder="28"
+                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                        >
+                    </div>
+                    <div>
+                        <label for="weight" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Vazn (kg)</label>
+                        <input 
+                            type="number" 
+                            id="weight" 
+                            required 
+                            min="30" 
+                            max="300" 
+                            placeholder="75"
+                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                        >
+                    </div>
+                    <div>
+                        <label for="height" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Bo'y (cm)</label>
+                        <input 
+                            type="number" 
+                            id="height" 
+                            required 
+                            min="100" 
+                            max="250" 
+                            placeholder="175"
+                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                        >
+                    </div>
+                </div>
+
+                <div>
+                    <label for="gender" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Jins</label>
+                    <select 
+                        id="gender" 
+                        required 
+                        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    >
+                        <option value="">Tanlang</option>
+                        <option value="male">Erkak</option>
+                        <option value="female">Ayol</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Fitness Goals -->
+            <div class="space-y-4">
+                <h3 class="font-semibold text-lg border-b pb-2 text-gray-900 dark:text-white">Fitness Maqsadlari</h3>
+                
+                <div>
+                    <label for="goal" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Maqsad</label>
+                    <select 
+                        id="goal" 
+                        required 
+                        onchange="toggleTargetWeight()"
+                        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    >
+                        <option value="">Maqsadingizni tanlang</option>
+                        <option value="lose">Vazn Tushirish</option>
+                        <option value="gain">Vazn Olish</option>
+                        <option value="maintain">Saqlab Turish</option>
+                    </select>
+                </div>
+
+                <div id="targetWeightDiv" class="hidden">
+                    <label for="targetWeight" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Maqsadli Vazn (kg)</label>
+                    <input 
+                        type="number" 
+                        id="targetWeight" 
+                        min="30" 
+                        max="300" 
+                        placeholder="70"
+                        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    >
+                </div>
+
+                <div>
+                    <label for="activityLevel" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Faollik Darajasi</label>
+                    <select 
+                        id="activityLevel" 
+                        required 
+                        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    >
+                        <option value="">Faollik darajangizni tanlang</option>
+                        <option value="sedentary">Kam Harakatli (sport yo'q)</option>
+                        <option value="light">Yengil Faol (1-3 kun/hafta)</option>
+                        <option value="moderate">O'rtacha Faol (3-5 kun/hafta)</option>
+                        <option value="active">Faol (6-7 kun/hafta)</option>
+                        <option value="very_active">Juda Faol (kuniga 2 marta)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="w-full px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-medium text-lg">
+                Hisob Yaratish va Boshlash
+            </button>
+
+            <div class="text-center text-sm text-gray-600 dark:text-gray-400">
+                Hisobingiz bormi? 
+                <a href="login.html" class="text-emerald-600 hover:underline font-medium">Kirish</a>
+            </div>
+        </form>
+    </div>
+
+    <div id="toast" class="fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50"></div>
+
+    <script src="app.js"></script>
+    <script>
+        function toggleTargetWeight() {
+            const goal = document.getElementById('goal').value;
+            const targetWeightDiv = document.getElementById('targetWeightDiv');
+            const targetWeightInput = document.getElementById('targetWeight');
+            
+            if (goal && goal !== 'maintain') {
+                targetWeightDiv.classList.remove('hidden');
+                targetWeightInput.required = true;
+            } else {
+                targetWeightDiv.classList.add('hidden');
+                targetWeightInput.required = false;
+            }
+        }
+
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                age: parseInt(document.getElementById('age').value),
+                weight: parseFloat(document.getElementById('weight').value),
+                height: parseFloat(document.getElementById('height').value),
+                gender: document.getElementById('gender').value,
+                goal: document.getElementById('goal').value,
+                activityLevel: document.getElementById('activityLevel').value,
+                targetWeight: document.getElementById('targetWeight').value ? parseFloat(document.getElementById('targetWeight').value) : undefined
+            };
+
+            if (!formData.name || !formData.email || !formData.password || 
+                !formData.age || !formData.weight || !formData.height || 
+                !formData.gender || !formData.goal || !formData.activityLevel) {
+                showToast('Iltimos barcha maydonlarni to\'ldiring', 'error');
+                return;
+            }
+
+            if (formData.goal !== 'maintain' && !formData.targetWeight) {
+                showToast('Iltimos maqsadli vazningizni kiriting', 'error');
+                return;
+            }
+
+            localStorage.setItem('userProfile', JSON.stringify({
+                name: formData.name,
+                age: formData.age,
+                weight: formData.weight,
+                height: formData.height,
+                gender: formData.gender,
+                goal: formData.goal,
+                activityLevel: formData.activityLevel,
+                targetWeight: formData.targetWeight
+            }));
+            localStorage.setItem('isLoggedIn', 'true');
+            
+            showToast('Profil muvaffaqiyatli yaratildi! 🎉', 'success');
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
