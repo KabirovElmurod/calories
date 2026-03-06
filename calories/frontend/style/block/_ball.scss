@@ -1,0 +1,6 @@
+.top_ball{
+    @include ball(500px, 300px, rgb(0, 255, 229), 0, -100px, 150px)
+}
+.left_ball{
+    @include ball(500px, 300px, rgb(0, 255, 255), calc(100% - 300px), 900px, 150px)
+}

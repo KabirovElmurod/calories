@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - O'zbek Taomi & Fitness AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900">
+    <!-- Header -->
+    <div class="relative overflow-hidden bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600">
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="flex justify-between items-center mb-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold text-white">O'zbek Taomi & Fitness AI</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-white/20 text-white">
+                        <svg id="theme-icon-moon-dash" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg id="theme-icon-sun-dash" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                    <button onclick="logout()" class="px-4 py-2 border-2 border-white text-white hover:bg-white/20 rounded-lg">
+                        Chiqish
+                    </button>
+                </div>
+            </div>
+            <div>
+                <h1 id="welcomeText" class="text-4xl text-white mb-2">Xush kelibsiz! 👋</h1>
+                <p class="text-lg text-white/90">AI yordamchingiz bugun uchun fitness rejangizni tayyorladi</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Stats Cards -->
+        <div class="grid md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border-2 border-gray-200 dark:border-gray-700 shadow-lg">
+                <div class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Kunlik Kaloriya</div>
+                <div id="dailyCalories" class="text-3xl font-bold text-emerald-600">0</div>
+                <div class="text-xs text-gray-500 mt-1">kcal/kun</div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border-2 border-gray-200 dark:border-gray-700 shadow-lg">
+                <div class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Hozirgi Vazn</div>
+                <div id="currentWeight" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
+                <div id="targetWeightText" class="text-xs text-gray-500 mt-1">kg</div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border-2 border-gray-200 dark:border-gray-700 shadow-lg">
+                <div class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Haftalik O'zgarish</div>
+                <div class="flex items-center gap-2">
+                    <svg id="trendIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"></svg>
+                    <span id="weeklyChange" class="text-3xl font-bold">0</span>
+                </div>
+                <div id="changeType" class="text-xs text-gray-500 mt-1"></div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border-2 border-gray-200 dark:border-gray-700 shadow-lg">
+                <div class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Maqsad</div>
+                <div id="goalBadge" class="inline-block px-3 py-1 bg-emerald-600 text-white text-sm rounded-full font-medium">...</div>
+                <div id="estimatedWeeks" class="text-xs text-gray-500 mt-2"></div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-2 mb-6">
+            <div class="flex flex-wrap gap-2">
+                <button onclick="switchTab('meals')" id="tab-meals" class="tab-btn flex-1 md:flex-none px-6 py-3 rounded-lg font-medium transition-colors">
+                    🍽️ Bugungi Taomlar
+                </button>
+                <button onclick="switchTab('log')" id="tab-log" class="tab-btn flex-1 md:flex-none px-6 py-3 rounded-lg font-medium transition-colors">
+                    📅 Taom Yozish
+                </button>
+                <button onclick="switchTab('progress')" id="tab-progress" class="tab-btn flex-1 md:flex-none px-6 py-3 rounded-lg font-medium transition-colors">
+                    📊 Rivojlanish
+                </button>
+                <button onclick="switchTab('profile')" id="tab-profile" class="tab-btn flex-1 md:flex-none px-6 py-3 rounded-lg font-medium transition-colors">
+                    👤 Profil
+                </button>
+            </div>
+        </div>
+
+        <!-- Tab Content: Meals -->
+        <div id="content-meals" class="tab-content">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-6">
+                <div class="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950 dark:to-teal-950 p-6">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">AI Ovqatlanish Rejasi</h2>
+                            <p id="mealsDescription" class="text-gray-600 dark:text-gray-400"></p>
+                        </div>
+                        <button onclick="refreshMealPlan()" class="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg font-medium flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                            </svg>
+                            Yangilash
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6 space-y-8">
+                    <!-- Breakfast -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
+                            <div class="w-8 h-8 rounded-full bg-orange-100 dark:bg-orange-900 flex items-center justify-center">🌅</div>
+                            Nonushta
+                        </h3>
+                        <div id="breakfastMeals" class="space-y-3"></div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">🌞</div>
+                            Tushlik
+                        </h3>
+                        <div id="lunchMeals" class="space-y-3"></div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
+                            <div class="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center">🌙</div>
+                            Kechki Ovqat
+                        </h3>
+                        <div id="dinnerMeals" class="space-y-3"></div>
+                    </div>
+
+                    <div class="mt-8 p-4 bg-emerald-50 dark:bg-emerald-950 rounded-lg">
+                        <div class="flex items-center justify-between">
+                            <span class="font-semibold text-gray-900 dark:text-white">Jami Kaloriya:</span>
+                            <span id="totalMealCalories" class="text-2xl font-bold text-emerald-600">0 kcal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-6">
+                <div class="bg-gradient-to-r from-emerald-500 to-teal-500 p-6">
+                    <h2 class="text-2xl font-bold text-white">AI Maslahatlari 🤖</h2>
+                </div>
+                <div class="p-6">
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-gray-700 dark:text-gray-300">Har kuni bir xil vaqtda ovqatlaning - bu metabolizmni yaxshilaydi</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-gray-700 dark:text-gray-300">Kuniga kamida 2 litr suv iching</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-gray-700 dark:text-gray-300">Yaxshi uyqu – 7-8 soat sifatli uyqu ta'minlang</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-gray-700 dark:text-gray-300">Haftada 3-4 marta jismoniy mashqlar qiling</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Exercise Link -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">💪 Mashq Rejasi</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-4">Maqsadlaringizga erishish uchun shaxsiy mashq dasturi</p>
+                <button onclick="window.location.href='exercise.html'" class="w-full px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-medium text-lg">
+                    Mashq Rejasini Ko'rish
+                </button>
+            </div>
+        </div>
+
+        <!-- Tab Content: Food Log -->
+        <div id="content-log" class="tab-content hidden">
+            <!-- Add Food Section -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-6">
+                <div class="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950 dark:to-teal-950 p-6">
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">🍽️ Taom qo'shish / Add Food</h2>
+                    <p class="text-gray-600 dark:text-gray-400">Bugun iste'mol qilgan taomlaringizni kiriting</p>
+                </div>
+                <div class="p-6">
+                    <div class="flex flex-col md:flex-row gap-3">
+                        <select id="dishSelect" class="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white">
+                            <option value="">Taom tanlang / Select a dish</option>
+                        </select>
+                        <button onclick="addFood()" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-medium">
+                            ➕ Qo'shish
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Totals -->
+            <div id="foodTotalsCard" class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-6 hidden">
+                <div class="bg-gradient-to-r from-emerald-500 to-teal-500 p-6">
+                    <h2 class="text-2xl font-bold text-white">Bugungi umumiy ko'rsatkichlar / Today's Totals</h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-orange-50 dark:bg-orange-950 p-4 rounded-xl text-center">
+                            <div id="totalCalories" class="text-3xl font-bold text-orange-600">0</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Kaloriya / Calories</div>
+                        </div>
+                        <div class="bg-blue-50 dark:bg-blue-950 p-4 rounded-xl text-center">
+                            <div id="totalProtein" class="text-3xl font-bold text-blue-600">0g</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Oqsil / Protein</div>
+                        </div>
+                        <div class="bg-purple-50 dark:bg-purple-950 p-4 rounded-xl text-center">
+                            <div id="totalCarbs" class="text-3xl font-bold text-purple-600">0g</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Uglevod / Carbs</div>
+                        </div>
+                        <div class="bg-yellow-50 dark:bg-yellow-950 p-4 rounded-xl text-center">
+                            <div id="totalFat" class="text-3xl font-bold text-yellow-600">0g</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Yog' / Fat</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logged Foods -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-6">
+                <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">📅 Bugun yegan taomlar / Today's Log</h2>
+                            <p id="logCount" class="text-gray-600 dark:text-gray-400 mt-1">Siz bugun 0 ta taom yeganingizni kiritdingiz</p>
+                        </div>
+                        <button onclick="clearAllFoods()" id="clearAllBtn" class="px-4 py-2 border-2 border-red-300 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg font-medium hidden">
+                            Barchasini o'chirish
+                        </button>
+                    </div>
+                </div>
+                <div id="loggedFoodsList" class="p-6">
+                    <div class="text-center py-12 text-gray-500 dark:text-gray-400">
+                        <svg class="w-16 h-16 mx-auto mb-4 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        <p class="text-lg">Hali taom qo'shilmagan</p>
+                        <p class="text-sm mt-2">Yuqoridan taom tanlang va qo'shing</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Dishes Reference -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Barcha mavjud taomlar / All Available Dishes</h2>
+                    <p class="text-gray-600 dark:text-gray-400 mt-1">To'liq taomlar ro'yxati va ularning qiymatlanishi</p>
+                </div>
+                <div id="allDishesList" class="p-6 max-h-96 overflow-y-auto"></div>
+            </div>
+        </div>
+
+        <!-- Tab Content: Progress -->
+        <div id="content-progress" class="tab-content hidden space-y-6">
+            <!-- Weight Chart -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+                <div class="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950 p-6">
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Vazn O'zgarishi Prognozi</h2>
+                    <p id="chartDescription" class="text-gray-600 dark:text-gray-400"></p>
+                </div>
+                <div class="p-6">
+                    <canvas id="weightChart" class="w-full" height="300"></canvas>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Macronutrients -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Makronutrientlar</h3>
+                    <div class="space-y-4" id="macrosList"></div>
+                </div>
+
+                <!-- BMR & TDEE -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">BMR va TDEE</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Asosiy Metabolizm Tezligi</p>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                            <div class="text-sm text-gray-600 dark:text-gray-400">BMR</div>
+                            <div id="bmrValue" class="text-2xl font-bold text-gray-900 dark:text-white">0 kcal</div>
+                        </div>
+                        <div class="p-4 bg-emerald-50 dark:bg-emerald-950 rounded-lg">
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Kunlik Tavsiya</div>
+                            <div id="tdeeValue" class="text-2xl font-bold text-emerald-600">0 kcal</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content: Profile -->
+        <div id="content-profile" class="tab-content hidden">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+                <div class="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950 dark:to-pink-950 p-6">
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Shaxsiy Ma'lumotlar</h2>
+                    <p class="text-gray-600 dark:text-gray-400">Sizning profil ma'lumotlaringiz</p>
+                </div>
+                <div class="p-6">
+                    <div id="profileInfo" class="grid md:grid-cols-2 gap-6"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50"></div>
+
+    <script src="app.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
